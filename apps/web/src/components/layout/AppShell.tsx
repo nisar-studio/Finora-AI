@@ -12,6 +12,7 @@ import {
   X,
 } from 'lucide-react';
 import { setTokenProvider } from '../../lib/api';
+import { FinoraEmblem } from '../brand/FinoraEmblem';
 
 interface NavItem {
   to: string;
@@ -44,10 +45,8 @@ export function AppShell() {
 
       {/* Mobile Top Header */}
       <header className="flex h-16 items-center justify-between border-b border-ink/8 bg-surface px-4 lg:hidden">
-        <div className="flex items-center gap-2">
-          <div className="flex size-8 items-center justify-center rounded-lg bg-ink text-canvas">
-            <Sparkles className="size-4 text-amber-400" />
-          </div>
+        <div className="flex items-center gap-2.5">
+          <FinoraEmblem size={32} />
           <span className="font-bold tracking-tight text-ink">Finora AI</span>
         </div>
         <button
@@ -76,9 +75,7 @@ export function AppShell() {
         ].join(' ')}
       >
         <div className="mb-6 flex items-center gap-2.5 px-2">
-          <div className="flex size-8 items-center justify-center rounded-lg bg-ink text-canvas shadow-xs">
-            <Sparkles className="size-4 text-amber-400" />
-          </div>
+          <FinoraEmblem size={36} />
           <span className="text-lg font-bold tracking-tight text-ink">Finora AI</span>
         </div>
 

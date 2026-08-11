@@ -1,6 +1,7 @@
 import { useAuth } from '@clerk/clerk-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Sparkles, BrainCircuit, BarChart3, ShieldCheck, ArrowRight, Wallet } from 'lucide-react';
+import { FinoraEmblem } from '../components/brand/FinoraEmblem';
 
 export function LandingPage() {
   const { isSignedIn } = useAuth();
@@ -18,10 +19,8 @@ export function LandingPage() {
     <div className="min-h-screen bg-canvas text-ink">
       {/* Header */}
       <header className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-        <div className="flex items-center gap-2">
-          <div className="flex size-9 items-center justify-center rounded-xl bg-ink text-canvas shadow-sm">
-            <Sparkles className="size-5" />
-          </div>
+        <div className="flex items-center gap-2.5">
+          <FinoraEmblem size={38} />
           <span className="text-xl font-bold tracking-tight">Finora AI</span>
         </div>
         <nav className="flex items-center gap-4 text-sm font-medium">
