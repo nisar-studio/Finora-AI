@@ -75,22 +75,21 @@ function IntelligenceError({ error, onRetry }: { error: unknown; onRetry: () => 
         {isMlUnavailable ? 'Insights are temporarily unavailable' : 'Couldn’t load financial intelligence'}
       </p>
       <p className="mt-1 text-sm text-ink-muted">{message}</p>
-      {isMlUnavailable ? (
-        <Link
-          to="/app/dashboard"
-          className="mt-5 inline-block rounded-md bg-ink px-4 py-2 text-sm font-medium text-ink-inverse transition-opacity hover:opacity-90"
-        >
-          Back to dashboard
-        </Link>
-      ) : (
+      <div className="mt-5 flex items-center justify-center gap-3">
         <button
           type="button"
           onClick={onRetry}
-          className="mt-5 rounded-md bg-ink px-4 py-2 text-sm font-medium text-ink-inverse transition-opacity hover:opacity-90"
+          className="rounded-md bg-ink px-4 py-2 text-sm font-medium text-canvas transition-opacity hover:opacity-90 cursor-pointer"
         >
-          Retry
+          Try again
         </button>
-      )}
+        <Link
+          to="/app/dashboard"
+          className="rounded-md border border-ink/15 bg-surface px-4 py-2 text-sm font-medium text-ink transition-colors hover:bg-ink/5"
+        >
+          Back to dashboard
+        </Link>
+      </div>
     </div>
   );
 }
