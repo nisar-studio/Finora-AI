@@ -21,7 +21,7 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { to: '/app', label: 'Dashboard', icon: LayoutDashboard, end: true },
+  { to: '/app/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { to: '/app/transactions', label: 'Transactions', icon: Send },
   { to: '/app/analytics', label: 'Analytics', icon: BarChart3 },
   { to: '/app/intelligence', label: 'Intelligence', icon: BrainCircuit },
@@ -119,6 +119,9 @@ export function AppShell() {
 function TokenBridge() {
   const { getToken } = useAuth();
 
+  // Set provider immediately so synchronous initial queries can resolve getToken
+  setTokenProvider(async () => getToken());
+
   useEffect(() => {
     setTokenProvider(async () => getToken());
   }, [getToken]);
@@ -132,7 +135,7 @@ function UserProfileFooter() {
   return (
     <div className="flex items-center justify-between border-t border-ink/8 px-2 pt-4">
       <div className="flex items-center gap-3 overflow-hidden">
-        <UserButton afterSignOutUrl="/" />
+        <UserButton />
         <div className="flex flex-col truncate text-xs">
           <span className="truncate font-medium text-ink">
             {user?.fullName || user?.primaryEmailAddress?.emailAddress || 'User'}

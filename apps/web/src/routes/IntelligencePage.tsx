@@ -77,7 +77,7 @@ function IntelligenceError({ error, onRetry }: { error: unknown; onRetry: () => 
       <p className="mt-1 text-sm text-ink-muted">{message}</p>
       {isMlUnavailable ? (
         <Link
-          to="/app"
+          to="/app/dashboard"
           className="mt-5 inline-block rounded-md bg-ink px-4 py-2 text-sm font-medium text-ink-inverse transition-opacity hover:opacity-90"
         >
           Back to dashboard

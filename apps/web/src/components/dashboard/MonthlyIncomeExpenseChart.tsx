@@ -16,9 +16,16 @@ const MONTH_LABELS = [
   'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
 ];
 
-function monthShortLabel(monthKey: string): string {
-  const [, mm] = monthKey.split('-');
-  return MONTH_LABELS[Number(mm) - 1] ?? monthKey;
+function monthShortLabel(monthKey: unknown): string {
+  if (typeof monthKey !== 'string') {
+    return String(monthKey ?? '');
+  }
+  const parts = monthKey.split('-');
+  if (parts.length < 2) {
+    return monthKey;
+  }
+  const mm = Number(parts[1]);
+  return MONTH_LABELS[mm - 1] ?? monthKey;
 }
 
 const tooltipStyle = {

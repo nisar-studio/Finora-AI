@@ -27,8 +27,8 @@ export function App() {
           </ProtectedRoute>
         }
       >
-        <Route index element={<DashboardPage />} />
-        <Route path="dashboard" element={<Navigate to="/app" replace />} />
+        <Route index element={<Navigate to="/app/dashboard" replace />} />
+        <Route path="dashboard" element={<DashboardPage />} />
         <Route path="transactions" element={<TransactionsPage />} />
         <Route path="analytics" element={<AnalyticsPage />} />
         <Route path="intelligence" element={<IntelligencePage />} />

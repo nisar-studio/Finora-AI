@@ -8,7 +8,7 @@ export function LandingPage() {
 
   const handleGetStarted = () => {
     if (isSignedIn) {
-      navigate('/app');
+      navigate('/app/dashboard');
     } else {
       navigate('/sign-in');
     }
@@ -27,7 +27,7 @@ export function LandingPage() {
         <nav className="flex items-center gap-4 text-sm font-medium">
           {isSignedIn ? (
             <Link
-              to="/app"
+              to="/app/dashboard"
               className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2 text-sm font-medium text-canvas transition-opacity hover:opacity-90"
             >
               Go to Dashboard

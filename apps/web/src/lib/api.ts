@@ -23,17 +23,42 @@ type ApiErrorPayload = {
   error?: { code?: string; message?: string };
 };
 
+async function getAuthToken(): Promise<string | null> {
+  if (tokenProvider) {
+    try {
+      const token = await tokenProvider();
+      if (token) return token;
+    } catch {
+      // Fall back to window.Clerk if tokenProvider fails
+    }
+  }
+
+  if (
+    typeof window !== 'undefined' &&
+    (window as unknown as { Clerk?: { session?: { getToken: () => Promise<string | null> } } }).Clerk
+      ?.session
+  ) {
+    try {
+      return await (
+        window as unknown as { Clerk: { session: { getToken: () => Promise<string | null> } } }
+      ).Clerk.session.getToken();
+    } catch {
+      return null;
+    }
+  }
+
+  return null;
+}
+
 async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
   const headers: Record<string, string> = {
     'content-type': 'application/json',
     ...(init.headers as Record<string, string> | undefined),
   };
 
-  if (tokenProvider) {
-    const token = await tokenProvider();
-    if (token) {
-      headers.authorization = `Bearer ${token}`;
-    }
+  const token = await getAuthToken();
+  if (token) {
+    headers.authorization = `Bearer ${token}`;
   }
 
   const response = await fetch(`${API_BASE}${path}`, { ...init, headers });

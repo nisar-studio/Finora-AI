@@ -11,6 +11,16 @@ import { CategoryDonutChart } from '../components/dashboard/CategoryDonutChart';
 import { ComparisonList } from '../components/dashboard/ComparisonList';
 import { TopCategories } from '../components/dashboard/TopCategories';
 
+function formatExpenseDate(dateStr: string): string {
+  try {
+    const d = new Date(dateStr);
+    if (Number.isNaN(d.getTime())) return dateStr;
+    return new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }).format(d);
+  } catch {
+    return dateStr;
+  }
+}
+
 export function DashboardPage() {
   const query = useAnalytics();
 
@@ -23,7 +33,7 @@ export function DashboardPage() {
         </p>
       </header>
 
-      {query.isLoading ? (
+      {query.isLoading || (query.isFetching && !query.data) ? (
         <DashboardSkeleton />
       ) : query.isError ? (
         <DashboardError message={query.error.message} onRetry={query.refetch} />
@@ -39,7 +49,9 @@ export function DashboardPage() {
             largestExpense={query.data.largestExpense}
           />
         )
-      ) : null}
+      ) : (
+        <DashboardSkeleton />
+      )}
     </section>
   );
 }
@@ -108,9 +120,7 @@ function DashboardContent({
               <p className="text-sm capitalize text-ink">{categoryLabel(largestExpense.category)}</p>
               <p className="text-sm text-ink-muted">{largestExpense.description || 'No description'}</p>
               <p className="text-xs text-ink-muted">
-                {new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }).format(
-                  new Date(largestExpense.date)
-                )}
+                {formatExpenseDate(largestExpense.date)}
               </p>
             </div>
           ) : (

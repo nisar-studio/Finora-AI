@@ -8,7 +8,7 @@ export function SignInPage() {
           routing="path"
           path="/sign-in"
           signUpUrl="/sign-up"
-          forceRedirectUrl="/app"
+          forceRedirectUrl="/app/dashboard"
           appearance={{
             elements: {
               rootBox: 'mx-auto w-full',
