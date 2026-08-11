@@ -121,9 +121,9 @@ export function LandingPage() {
             <div className="mb-4 flex size-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600">
               <Sparkles className="size-6" />
             </div>
-            <h3 className="text-lg font-semibold">Gemini AI Coach</h3>
+            <h3 className="text-lg font-semibold">AI Financial Coach</h3>
             <p className="mt-2 text-sm text-ink-muted leading-relaxed">
-              Conversational assistant powered by Google Gemini, grounded strictly in pre-computed financial context snapshots.
+              Ask personalized questions about your spending, goals, and financial habits. Get grounded guidance powered by Google Gemini and your verified financial data.
             </p>
           </div>
         </div>
