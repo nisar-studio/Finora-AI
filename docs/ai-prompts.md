@@ -10,7 +10,7 @@
   `GoogleGenAI`), integrated **exclusively in the Node backend**. The API key
   never leaves the server, is never exposed to the browser.
 
-## 2. Prompt organization & versioning
+## 2.Prompt organization & versioning
 
 `apps/api/src/modules/coach/prompts/`
 
