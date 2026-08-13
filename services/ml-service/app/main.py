@@ -2,7 +2,7 @@
 
 FastAPI application for prediction, anomaly detection, and pattern analysis.
 Not directly reachable from the browser - only the Node backend calls it,
-authenticated with the internal API key (ML_SERVICE_API_KEY).
+authenticated with the internal API key  (ML_SERVICE_API_KEY).
 """
 
 from contextlib import asynccontextmanager
