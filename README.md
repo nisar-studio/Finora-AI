@@ -18,7 +18,7 @@ Track spending, set savings goals, and get honest financial guidance — grounde
 [![Vercel](https://img.shields.io/badge/Frontend-Vercel-000000?logo=vercel&logoColor=white)](https://vercel.com/)
 [![Render](https://img.shields.io/badge/Backend-Render-46E3B7?logo=render&logoColor=white)](https://render.com/)
 
-**[🚀 Live Demo](#-live-demo)** · **[Use Cases](#-use-cases)** · **[Architecture](#-architecture)** · **[Getting Started](#-getting-started)**
+**[🚀 Live Demo](#-live-demo)** · **[Features](#-features)** · **[Use Cases](#-use-cases)** · **[Screenshots](#-screenshots)** · **[Architecture](#-architecture)** · **[Getting Started](#-getting-started)**
 
 </div>
 
@@ -42,6 +42,50 @@ Replace the URL above once `apps/web` is deployed to Vercel. Two honest notes wo
 
 Most "AI finance" demos either let the LLM invent numbers or skip the hard part (actual financial math) entirely. Finora is built around one non-negotiable rule, stated directly in its own architecture docs: **the LLM never computes — it only reads pre-verified numbers.** Every balance, savings rate, risk score, and forecast is computed deterministically in Node.js or by an explicit statistical method in the Python service *before* Gemini ever sees it. Gemini's job is narrow and honest: explain, contextualize, and answer — never calculate.
 
+---
+
+## ✨ Features
+
+Everything below is confirmed working end-to-end in a live walkthrough — not just designed.
+
+### 📊 Dashboard
+An at-a-glance financial snapshot: current balance, total income, and total expenses, plus:
+- **Income vs. Expenses** monthly bar chart
+- **Spending by Category** breakdown
+- **Top Spending Categories** with percentage share
+- **Current vs. Last Month** comparison
+- **Largest Expense** callout card
+
+### 💳 Transactions
+A fully functional ledger, not a static table:
+- Add-transaction form (type, amount, category, description, date)
+- Real-time list with correct signage (income vs. expense)
+- Filter by type and category
+- Edit and delete per transaction
+- Pagination
+
+### 📈 Analytics
+A deeper drill-down on the same real numbers: Total Income, Total Expenses, Net Balance, and Savings Rate as headline metrics, an income/expense/savings trend chart, period-over-period comparison, category distribution, and a top-spending breakdown.
+
+### 🧠 Intelligence — statistical, not synthetic
+The most differentiated part of the app, and the one that's most upfront about its own confidence:
+- **Financial Risk Indicator** — a plain-language risk read (e.g. "spending looks steady") with a visible score, labeled directly in the UI as *"not a credit score, not financial advice"*
+- **Expense Forecast** — a next-month estimate with its **model confidence shown as a percentage** (e.g. 10% with limited history), and an explicit "not a promise" disclaimer
+- **Unusual Spending detection** — statistical anomaly flags based on your own category averages, correctly reporting nothing when nothing is actually anomalous
+- **Spending Patterns** — rising, falling, and recurring category trends
+- **Low-data honesty** — with limited transaction history, the page shows a **"Still building your history"** notice instead of presenting thin data as a confident insight
+
+### 🤖 AI Coach — grounded, cited answers
+A chat interface with suggested starter questions. What makes it stand out: every answer is backed by a **"Sources used"** panel naming exactly which computed metrics informed it (e.g. *This month summary, Top categories, Category trends, 6-month trend*). In a live test, asked about spending, it correctly answered:
+> *"Your highest spending category in August 2026 is Education, where you spent ₹25,000 (62.5% of your total expenses)... Your single largest expense was also in Education for ₹25,000 on August 11, 2026."*
+
+Numbers matched the real transaction data exactly — no invented figures.
+
+### 🎯 Savings Goals
+Create a goal with a target amount and optional deadline, track "saved so far," and toggle auto-save — with a clean empty state before any goals exist.
+
+---
+
 ## 🎯 Use Cases
 
 | Use Case | How Finora helps |
@@ -52,10 +96,34 @@ Most "AI finance" demos either let the LLM invent numbers or skip the hard part 
 | **Spending risk awareness** | The intelligence engine flags an honest risk level (low/moderate/high) based on your actual expense-to-income ratio |
 | **Catching unusual spending** | Statistical anomaly detection flags transactions that deviate significantly from your own category averages — not a fixed threshold that ignores your habits |
 
+### Proven in practice, not just designed
+
+The claims above aren't just architectural promises — a live walkthrough confirmed the Coach's cited answers, the forecast's visible confidence score, and the Intelligence page's honest low-data notice all work exactly as designed. See [Features → Intelligence](#-features) and [Features → AI Coach](#-features) for the specific evidence.
+
 ### Known Scope & Limitations
 - **Not financial advice.** The system prompt explicitly instructs Gemini to decline professional/legal financial advice and to recommend a qualified advisor for high-stakes decisions — worth stating just as plainly here.
 - **Forecasting is intentionally simple.** Expense forecasting uses honest least-squares trend analysis over your own monthly history (with a trailing-average fallback when there isn't enough data) — not a trained machine-learning model. This is a deliberate choice documented in the codebase, not a limitation to hide.
 - **Receipt scanning, budgets, smart notifications, and statement import are designed but not yet built** — see [Roadmap](#-roadmap). Per the project's own "no fake features" rule, unbuilt features aren't wired up to look like they work.
+
+---
+
+## 📸 Screenshots
+
+> _Replace these placeholders with real screenshots (or frames pulled from your own demo video) before publishing._
+
+| Dashboard | Transactions |
+|---|---|
+| ![Dashboard placeholder](./docs/screenshots/dashboard.png) | ![Transactions placeholder](./docs/screenshots/transactions.png) |
+
+| Intelligence | AI Coach |
+|---|---|
+| ![Intelligence placeholder](./docs/screenshots/intelligence.png) | ![Coach placeholder](./docs/screenshots/coach.png) |
+
+| Analytics | Goals |
+|---|---|
+| ![Analytics placeholder](./docs/screenshots/analytics.png) | ![Goals placeholder](./docs/screenshots/goals.png) |
+
+**Tip:** the Intelligence and Coach screens are the strongest ones to lead with — they're the two that visibly prove the "grounded, honest AI" claim (the Coach's "Sources used" panel, and the forecast's confidence percentage) rather than just describing it.
 
 ---
 
